@@ -1,192 +1,184 @@
 ﻿################################################################################
-## Inicialização
+## Initialization
 ################################################################################
 
-## A instrução init offset faz com que as instruções de inicialização nesse
-## arquivo sejam executadas antes das instruções init em qualquer outro arquivo.
+## The init offset statement causes the initialization statements in this file
+## to run before init statements in any other file.
 init offset = -2
 
-## Chamar gui.init redefine os estilos para os valores padrão sensatos e define
-## a largura e a altura do jogo.
+## Calling gui.init resets the styles to sensible default values, and sets the
+## width and height of the game.
 init python:
     gui.init(1920, 1080)
 
-## Habilitar verificações de propriedades inválidas ou instáveis em telas ou
-## transformações
+## Enable checks for invalid or unstable properties in screens or transforms
 define config.check_conflicting_properties = True
 
 
 ################################################################################
-## Variáveis de configuração da GUI
+## GUI Configuration Variables
 ################################################################################
 
 
-## Cores #######################################################################
+## Colors ######################################################################
 ##
-## As cores do texto na interface.
+## The colors of text in the interface.
 
-## Uma cor de destaque usada em toda a interface para rotular e destacar o
-## texto.
+## An accent color used throughout the interface to label and highlight text.
 define gui.accent_color = '#0099cc'
 
-## A cor usada para um botão de texto quando ele não está selecionado nem passa
-## o mouse.
+## The color used for a text button when it is neither selected nor hovered.
 define gui.idle_color = '#888888'
 
-## A cor pequena é usada para texto pequeno, que precisa ser mais claro/escuro
-## para obter o mesmo efeito.
+## The small color is used for small text, which needs to be brighter/darker to
+## achieve the same effect.
 define gui.idle_small_color = '#aaaaaa'
 
-## A cor que é usada para botões e barras que passam pelo mouse.
+## The color that is used for buttons and bars that are hovered.
 define gui.hover_color = '#66c1e0'
 
-## A cor usada em um botão de texto quando ele está selecionado, mas não
-## focalizado. Um botão estará selecionado se for a tela atual ou o valor de
-## preferência.
+## The color used for a text button when it is selected but not focused. A
+## button is selected if it is the current screen or preference value.
 define gui.selected_color = '#ffffff'
 
-## A cor usada para um botão de texto quando ele não pode ser selecionado.
+## The color used for a text button when it cannot be selected.
 define gui.insensitive_color = '#8888887f'
 
-## Cores usadas para as partes das barras que não estão preenchidas. Elas não
-## são usadas diretamente, mas são usadas ao gerar novamente os arquivos de
-## imagem de barra.
+## Colors used for the portions of bars that are not filled in. These are not
+## used directly, but are used when re-generating bar image files.
 define gui.muted_color = '#003d51'
 define gui.hover_muted_color = '#005b7a'
 
-## As cores usadas para o diálogo e o texto da opção de menu.
+## The colors used for dialogue and menu choice text.
 define gui.text_color = '#ffffff'
 define gui.interface_text_color = '#ffffff'
 
 
-## Fontes e tamanhos de fonte ##################################################
+## Fonts and Font Sizes ########################################################
 
-## A fonte usada para o texto do jogo.
+## The font used for in-game text.
 define gui.text_font = "DejaVuSans.ttf"
 
-## A fonte usada para os nomes dos caracteres.
+## The font used for character names.
 define gui.name_text_font = "DejaVuSans.ttf"
 
-## A fonte usada para o texto fora do jogo.
+## The font used for out-of-game text.
 define gui.interface_text_font = "DejaVuSans.ttf"
 
-## O tamanho do texto normal do diálogo.
+## The size of normal dialogue text.
 define gui.text_size = 33
 
-## O tamanho dos nomes dos caracteres.
+## The size of character names.
 define gui.name_text_size = 45
 
-## O tamanho do texto na interface de usuário do jogo.
+## The size of text in the game's user interface.
 define gui.interface_text_size = 33
 
-## O tamanho dos rótulos na interface de usuário do jogo.
+## The size of labels in the game's user interface.
 define gui.label_text_size = 36
 
-## O tamanho do texto na tela de notificação.
+## The size of text on the notify screen.
 define gui.notify_text_size = 24
 
-## O tamanho do título do jogo.
+## The size of the game's title.
 define gui.title_text_size = 75
 
 
-## Menus principal e de jogos ##################################################
+## Main and Game Menus #########################################################
 
-## As imagens usadas nos menus principal e de jogo.
+## The images used for the main and game menus.
 define gui.main_menu_background = "gui/main_menu.png"
 define gui.game_menu_background = "gui/game_menu.png"
 
 
-## Diálogo #####################################################################
+## Dialogue ####################################################################
 ##
-## Essas variáveis controlam como o diálogo é exibido na tela, uma linha por
-## vez.
+## These variables control how dialogue is displayed on the screen one line at a
+## time.
 
-## A altura da caixa de texto que contém o diálogo.
+## The height of the textbox containing dialogue.
 define gui.textbox_height = 278
 
-## O posicionamento da caixa de texto verticalmente na tela. 0,0 é a parte
-## superior, 0,5 é o centro e 1,0 é a parte inferior.
+## The placement of the textbox vertically on the screen. 0.0 is the top, 0.5 is
+## center, and 1.0 is the bottom.
 define gui.textbox_yalign = 1.0
 
 
-## O posicionamento do nome do personagem que fala, em relação à caixa de texto.
-## Pode ser um número inteiro de pixels a partir da esquerda ou do topo, ou 0,5
-## para o centro.
+## The placement of the speaking character's name, relative to the textbox.
+## These can be a whole number of pixels from the left or top, or 0.5 to center.
 define gui.name_xpos = 360
 define gui.name_ypos = 0
 
-## O alinhamento horizontal do nome do personagem. Pode ser 0,0 para alinhado à
-## esquerda, 0,5 para centralizado e 1,0 para alinhado à direita.
+## The horizontal alignment of the character's name. This can be 0.0 for left-
+## aligned, 0.5 for centered, and 1.0 for right-aligned.
 define gui.name_xalign = 0.0
 
-## A largura, a altura e as bordas da caixa que contém o nome do caractere ou
-## Nenhum para dimensioná-la automaticamente.
+## The width, height, and borders of the box containing the character's name, or
+## None to automatically size it.
 define gui.namebox_width = None
 define gui.namebox_height = None
 
-## As bordas da caixa que contém o nome do personagem, na ordem esquerda,
-## superior, direita e inferior.
+## The borders of the box containing the character's name, in left, top, right,
+## bottom order.
 define gui.namebox_borders = Borders(5, 5, 5, 5)
 
-## Se for True, o plano de fundo da caixa de nome será lado a lado; se for
-## False, o plano de fundo da caixa de nome será dimensionado.
+## If True, the background of the namebox will be tiled, if False, the
+## background of the namebox will be scaled.
 define gui.namebox_tile = False
 
 
-## O posicionamento do diálogo em relação à caixa de texto. Esse pode ser um
-## número inteiro de pixels em relação ao lado esquerdo ou superior da caixa de
-## texto, ou 0,5 em relação ao centro.
+## The placement of dialogue relative to the textbox. These can be a whole
+## number of pixels relative to the left or top side of the textbox, or 0.5 to
+## center.
 define gui.dialogue_xpos = 402
 define gui.dialogue_ypos = 75
 
-## A largura máxima do texto da caixa de diálogo, em pixels.
+## The maximum width of dialogue text, in pixels.
 define gui.dialogue_width = 1116
 
-## O alinhamento horizontal do texto da caixa de diálogo. Pode ser 0,0 para
-## alinhado à esquerda, 0,5 para centralizado e 1,0 para alinhado à direita.
+## The horizontal alignment of the dialogue text. This can be 0.0 for left-
+## aligned, 0.5 for centered, and 1.0 for right-aligned.
 define gui.dialogue_text_xalign = 0.0
 
 
-## Botões ######################################################################
+## Buttons #####################################################################
 ##
-## Essas variáveis, juntamente com os arquivos de imagem em gui/button,
-## controlam aspectos de como os botões são exibidos.
+## These variables, along with the image files in gui/button, control aspects of
+## how buttons are displayed.
 
-## A largura e a altura de um botão, em pixels. Se nenhum, Ren'Py calcula um
-## tamanho.
+## The width and height of a button, in pixels. If None, Ren'Py computes a size.
 define gui.button_width = None
 define gui.button_height = None
 
-## As bordas em cada lado do botão, na ordem esquerda, superior, direita e
-## inferior.
+## The borders on each side of the button, in left, top, right, bottom order.
 define gui.button_borders = Borders(6, 6, 6, 6)
 
-## Se for True, a imagem de fundo será lado a lado. Se for False, a imagem de
-## fundo será dimensionada linearmente.
+## If True, the background image will be tiled. If False, the background image
+## will be linearly scaled.
 define gui.button_tile = False
 
-## A fonte usada pelo botão.
+## The font used by the button.
 define gui.button_text_font = gui.interface_text_font
 
-## O tamanho do texto usado pelo botão.
+## The size of the text used by the button.
 define gui.button_text_size = gui.interface_text_size
 
-## A cor do texto do botão em vários estados.
+## The color of button text in various states.
 define gui.button_text_idle_color = gui.idle_color
 define gui.button_text_hover_color = gui.hover_color
 define gui.button_text_selected_color = gui.selected_color
 define gui.button_text_insensitive_color = gui.insensitive_color
 
-## O alinhamento horizontal do texto do botão. (0,0 é à esquerda, 0,5 é ao
-## centro, 1,0 é à direita).
+## The horizontal alignment of the button text. (0.0 is left, 0.5 is center, 1.0
+## is right).
 define gui.button_text_xalign = 0.0
 
 
-## Essas variáveis substituem as configurações de diferentes tipos de botões.
-## Consulte a documentação do gui para saber os tipos de botões disponíveis e
-## para que cada um é usado.
+## These variables override settings for different kinds of buttons. Please see
+## the gui documentation for the kinds of buttons available, and what each is
+## used for.
 ##
-## Essas personalizações são usadas pela interface padrão:
+## These customizations are used by the default interface:
 
 define gui.radio_button_borders = Borders(27, 6, 6, 6)
 
@@ -201,16 +193,16 @@ define gui.quick_button_text_size = 21
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color
 
-## Você também pode adicionar suas próprias personalizações, acrescentando
-## variáveis com nomes adequados. Por exemplo, você pode descomentar a seguinte
-## linha para definir a largura de um botão de navegação.
+## You can also add your own customizations, by adding properly-named variables.
+## For example, you can uncomment the following line to set the width of a
+## navigation button.
 
 # define gui.navigation_button_width = 250
 
 
-## Botões de escolha ###########################################################
+## Choice Buttons ##############################################################
 ##
-## Os botões de escolha são usados nos menus do jogo.
+## Choice buttons are used in the in-game menus.
 
 define gui.choice_button_width = 1185
 define gui.choice_button_height = None
@@ -224,14 +216,13 @@ define gui.choice_button_text_hover_color = "#ffffff"
 define gui.choice_button_text_insensitive_color = '#8888887f'
 
 
-## Botões de slot de arquivo ###################################################
+## File Slot Buttons ###########################################################
 ##
-## Um botão de slot de arquivo é um tipo especial de botão. Ele contém uma
-## imagem em miniatura e um texto que descreve o conteúdo do slot de salvamento.
-## Um slot para salvar usa arquivos de imagem em gui/button, como os outros
-## tipos de botões.
+## A file slot button is a special kind of button. It contains a thumbnail
+## image, and text describing the contents of the save slot. A save slot uses
+## image files in gui/button, like the other kinds of buttons.
 
-## O botão salvar slot.
+## The save slot button.
 define gui.slot_button_width = 414
 define gui.slot_button_height = 309
 define gui.slot_button_borders = Borders(15, 15, 15, 15)
@@ -241,100 +232,97 @@ define gui.slot_button_text_idle_color = gui.idle_small_color
 define gui.slot_button_text_selected_idle_color = gui.selected_color
 define gui.slot_button_text_selected_hover_color = gui.hover_color
 
-## A largura e a altura das miniaturas usadas pelos slots de salvamento.
+## The width and height of thumbnails used by the save slots.
 define config.thumbnail_width = 384
 define config.thumbnail_height = 216
 
-## O número de colunas e linhas na grade de slots de salvamento.
+## The number of columns and rows in the grid of save slots.
 define gui.file_slot_cols = 3
 define gui.file_slot_rows = 2
 
 
-## Posicionamento e espaçamento ################################################
+## Positioning and Spacing #####################################################
 ##
-## Essas variáveis controlam o posicionamento e o espaçamento de vários
-## elementos da interface do usuário.
+## These variables control the positioning and spacing of various user interface
+## elements.
 
-## A posição do lado esquerdo dos botões de navegação, em relação ao lado
-## esquerdo da tela.
+## The position of the left side of the navigation buttons, relative to the left
+## side of the screen.
 define gui.navigation_xpos = 60
 
-## A posição vertical do indicador de salto.
+## The vertical position of the skip indicator.
 define gui.skip_ypos = 15
 
-## A posição vertical da tela de notificação.
+## The vertical position of the notify screen.
 define gui.notify_ypos = 68
 
-## O espaçamento entre as opções de menu.
+## The spacing between menu choices.
 define gui.choice_spacing = 33
 
-## Botões na seção de navegação dos menus principal e de jogo.
+## Buttons in the navigation section of the main and game menus.
 define gui.navigation_spacing = 6
 
-## Controla a quantidade de espaçamento entre as preferências.
+## Controls the amount of spacing between preferences.
 define gui.pref_spacing = 15
 
-## Controla a quantidade de espaçamento entre os botões de preferência.
+## Controls the amount of spacing between preference buttons.
 define gui.pref_button_spacing = 0
 
-## O espaçamento entre os botões de página de arquivo.
+## The spacing between file page buttons.
 define gui.page_spacing = 0
 
-## O espaçamento entre os slots de arquivo.
+## The spacing between file slots.
 define gui.slot_spacing = 15
 
-## A posição do texto do menu principal.
+## The position of the main menu text.
 define gui.main_menu_text_xalign = 1.0
 
 
-## Quadros #####################################################################
+## Frames ######################################################################
 ##
-## Essas variáveis controlam a aparência dos quadros que podem conter
-## componentes da interface do usuário quando uma sobreposição ou janela não
-## está presente.
+## These variables control the look of frames that can contain user interface
+## components when an overlay or window is not present.
 
-## Quadros genéricos.
+## Generic frames.
 define gui.frame_borders = Borders(6, 6, 6, 6)
 
-## O quadro que é usado como parte da tela de confirmação.
+## The frame that is used as part of the confirm screen.
 define gui.confirm_frame_borders = Borders(60, 60, 60, 60)
 
-## O quadro que é usado como parte da tela de salto.
+## The frame that is used as part of the skip screen.
 define gui.skip_frame_borders = Borders(24, 8, 75, 8)
 
-## O quadro que é usado como parte da tela de notificação.
+## The frame that is used as part of the notify screen.
 define gui.notify_frame_borders = Borders(24, 8, 60, 8)
 
-## Os planos de fundo dos quadros devem ser lado a lado?
+## Should frame backgrounds be tiled?
 define gui.frame_tile = False
 
 
-## Barras, barras de rolagem e controles deslizantes ###########################
+## Bars, Scrollbars, and Sliders ###############################################
 ##
-## Controlam a aparência e o tamanho das barras, barras de rolagem e controles
-## deslizantes.
+## These control the look and size of bars, scrollbars, and sliders.
 ##
-## A GUI padrão usa apenas controles deslizantes e barras de rolagem verticais.
-## Todas as outras barras são usadas somente em telas escritas pelo criador.
+## The default GUI only uses sliders and vertical scrollbars. All of the other
+## bars are only used in creator-written screens.
 
-## A altura das barras horizontais, barras de rolagem e controles deslizantes. A
-## largura das barras verticais, barras de rolagem e controles deslizantes.
+## The height of horizontal bars, scrollbars, and sliders. The width of vertical
+## bars, scrollbars, and sliders.
 define gui.bar_size = 38
 define gui.scrollbar_size = 18
 define gui.slider_size = 38
 
-## True (verdadeiro) se as imagens da barra devem ser lado a lado. False se elas
-## devem ser escalonadas linearmente.
+## True if bar images should be tiled. False if they should be linearly scaled.
 define gui.bar_tile = False
 define gui.scrollbar_tile = False
 define gui.slider_tile = False
 
-## Bordas horizontais.
+## Horizontal borders.
 define gui.bar_borders = Borders(6, 6, 6, 6)
 define gui.scrollbar_borders = Borders(6, 6, 6, 6)
 define gui.slider_borders = Borders(6, 6, 6, 6)
 
-## Bordas verticais.
+## Vertical borders.
 define gui.vbar_borders = Borders(6, 6, 6, 6)
 define gui.vscrollbar_borders = Borders(6, 6, 6, 6)
 define gui.vslider_borders = Borders(6, 6, 6, 6)
@@ -344,107 +332,106 @@ define gui.vslider_borders = Borders(6, 6, 6, 6)
 define gui.unscrollable = "hide"
 
 
-## Histórico ###################################################################
+## History #####################################################################
 ##
-## A tela de histórico exibe o diálogo que o jogador já dispensou.
+## The history screen displays dialogue that the player has already dismissed.
 
-## O número de blocos de histórico de diálogo que Ren'Py manterá.
+## The number of blocks of dialogue history Ren'Py will keep.
 define config.history_length = 250
 
-## A altura de uma entrada de tela de histórico ou Nenhum para tornar a altura
-## variável ao custo do desempenho.
+## The height of a history screen entry, or None to make the height variable at
+## the cost of performance.
 define gui.history_height = 210
 
 ## Additional space to add between history screen entries.
 define gui.history_spacing = 0
 
-## A posição, a largura e o alinhamento do rótulo que fornece o nome do
-## caractere falante.
+## The position, width, and alignment of the label giving the name of the
+## speaking character.
 define gui.history_name_xpos = 233
 define gui.history_name_ypos = 0
 define gui.history_name_width = 233
 define gui.history_name_xalign = 1.0
 
-## A posição, a largura e o alinhamento do texto da caixa de diálogo.
+## The position, width, and alignment of the dialogue text.
 define gui.history_text_xpos = 255
 define gui.history_text_ypos = 3
 define gui.history_text_width = 1110
 define gui.history_text_xalign = 0.0
 
 
-## Modo NVL ####################################################################
+## NVL-Mode ####################################################################
 ##
-## A tela do modo NVL exibe o diálogo falado pelos personagens do modo NVL.
+## The NVL-mode screen displays the dialogue spoken by NVL-mode characters.
 
-## As bordas do plano de fundo da janela de plano de fundo do modo NVL.
+## The borders of the background of the NVL-mode background window.
 define gui.nvl_borders = Borders(0, 15, 0, 30)
 
-## O número máximo de entradas do modo NVL que o Ren'Py exibirá. Quando mais
-## entradas do que isso forem exibidas, a entrada mais antiga será removida.
+## The maximum number of NVL-mode entries Ren'Py will display. When more entries
+## than this are to be show, the oldest entry will be removed.
 define gui.nvl_list_length = 6
 
-## A altura de uma entrada no modo NVL. Defina como None para que as entradas
-## ajustem a altura dinamicamente.
+## The height of an NVL-mode entry. Set this to None to have the entries
+## dynamically adjust height.
 define gui.nvl_height = 173
 
-## O espaçamento entre as entradas do modo NVL quando gui.nvl_height é Nenhum e
-## entre as entradas do modo NVL e um menu do modo NVL.
+## The spacing between NVL-mode entries when gui.nvl_height is None, and between
+## NVL-mode entries and an NVL-mode menu.
 define gui.nvl_spacing = 15
 
-## A posição, a largura e o alinhamento do rótulo que fornece o nome do
-## caractere falante.
+## The position, width, and alignment of the label giving the name of the
+## speaking character.
 define gui.nvl_name_xpos = 645
 define gui.nvl_name_ypos = 0
 define gui.nvl_name_width = 225
 define gui.nvl_name_xalign = 1.0
 
-## A posição, a largura e o alinhamento do texto da caixa de diálogo.
+## The position, width, and alignment of the dialogue text.
 define gui.nvl_text_xpos = 675
 define gui.nvl_text_ypos = 12
 define gui.nvl_text_width = 885
 define gui.nvl_text_xalign = 0.0
 
-## A posição, a largura e o alinhamento do texto nvl_thought (o texto dito pelo
-## caractere nvl_narrator).
+## The position, width, and alignment of nvl_thought text (the text said by the
+## nvl_narrator character.)
 define gui.nvl_thought_xpos = 360
 define gui.nvl_thought_ypos = 0
 define gui.nvl_thought_width = 1170
 define gui.nvl_thought_xalign = 0.0
 
-## A posição dos botões de menu nvl.
+## The position of nvl menu_buttons.
 define gui.nvl_button_xpos = 675
 define gui.nvl_button_xalign = 0.0
 
 
-## Localização #################################################################
+## Localization ################################################################
 
-## Isso controla onde é permitida uma quebra de linha. O padrão é adequado para
-## a maioria dos idiomas. Uma lista de valores disponíveis pode ser encontrada
-## em https://www.renpy.org/doc/html/style_properties.html#style-property-
-## language
+## This controls where a line break is permitted. The default is suitable
+## for most languages. A list of available values can be found at https://
+## www.renpy.org/doc/html/style_properties.html#style-property-language
 
 define gui.language = "unicode"
 
 
 ################################################################################
-## Dispositivos móveis
+## Mobile devices
 ################################################################################
 
 init python:
 
-    ## Isso aumenta o tamanho dos botões rápidos para torná-los mais fáceis de
-    ## tocar em tablets e telefones.
+    ## This increases the size of the quick buttons to make them easier to touch
+    ## on tablets and phones.
     @gui.variant
     def touch():
 
         gui.quick_button_borders = Borders(60, 21, 60, 0)
 
-    ## Isso altera o tamanho e o espaçamento de vários elementos da GUI para
-    ## garantir que eles sejam facilmente visíveis nos telefones.
+    ## This changes the size and spacing of various GUI elements to ensure they
+    ## are easily visible on phones.
     @gui.variant
     def small():
 
-        ## Tamanhos de fonte.
+        ## Font sizes.
         gui.text_size = 45
         gui.name_text_size = 54
         gui.notify_text_size = 38
@@ -452,13 +439,13 @@ init python:
         gui.button_text_size = 45
         gui.label_text_size = 51
 
-        ## Ajustar o local da caixa de texto.
+        ## Adjust the location of the textbox.
         gui.textbox_height = 360
         gui.name_xpos = 120
         gui.dialogue_xpos = 135
         gui.dialogue_width = 1650
 
-        ## Altere o tamanho e o espaçamento de vários itens.
+        ## Change the size and spacing of various things.
         gui.slider_size = 54
 
         gui.choice_button_width = 1860
@@ -472,11 +459,11 @@ init python:
 
         gui.quick_button_text_size = 30
 
-        ## Layout do botão Arquivo.
+        ## File button layout.
         gui.file_slot_cols = 2
         gui.file_slot_rows = 2
 
-        ## Modo NVL.
+        ## NVL-mode.
         gui.nvl_height = 255
 
         gui.nvl_name_width = 458
