@@ -5,8 +5,8 @@ label start:
     show aviva happy
     "Aviva..."
 
-    #$setupTimingGame()
-    #call screen caldeirao
+    $setupTimingGame()
+    call screen caldeirao
 
     return
 

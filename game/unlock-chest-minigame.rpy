@@ -21,10 +21,25 @@
 # Background art provided for free by mugenjohncel on the lemmasoft forums: https://lemmasoft.renai.us/forums/viewtopic.php?t=17302
 
 init python:
+    def get_spoon_image():
+        #Retorna o caminho da imagem da colher com base no ciclo + estado global
+        frame = store.SPOON_FRAMES[store.spoon_index % len(store.SPOON_FRAMES)]
+
+        sucessos_globais = store.total_correct
+
+        if sucessos_globais >= store.spoon_colorless_threshold:
+            suffix = "colorless"
+        else:
+            suffix = "color"
+
+        return "caldeirao/colher_%s_%s.png" % (frame, suffix)
+
     def setupTimingGame():
-        global safe_zone_pos
-        global slider_pos
-        global wrong_timing_count
+        global safe_zone_pos, slider_pos
+        global wrong_timing_count, correct_timing_count
+        global timing_check, slider_movement_dir
+        global timing_game_finished, run_timing_game
+        global spoon_index
 
         max_pos = slider_bar_size[0] - safe_zone_size[0]
         safe_zone_pos = (int(max_pos/2), 0)
@@ -33,19 +48,29 @@ init python:
         # the game as well as setting it up for the first time.
         slider_pos = (0, 0)
         wrong_timing_count = 0
+        correct_timing_count = 0
+        timing_check        = False
+        slider_movement_dir = "right"
+        timing_game_finished = False
+        run_timing_game     = False
+        spoon_index          = 0
 
         # Hide the "game over" screen in case this function is called to reset the game.
         renpy.hide_screen("lost_timing_game")
+
+    def startTimingGame():
+        #Reset + inicia. Use isso no clique do baú / on 'show' do caldeirão.
+        setupTimingGame()
+        store.run_timing_game = True
 
     def moveSliderThumb(current_chest_game):
         # This function manages the logic of the timing game. It moves the slider from side to side and
         # checks if the player has pressed the button when the thumb is overlapping the safe zone, and then
         # does things accordingly.
-        global slider_pos
-        global timing_check
-        global slider_movement_dir
-        global wrong_timing_count
-        global run_timing_game
+        global slider_pos, timing_check, slider_movement_dir
+        global wrong_timing_count, correct_timing_count
+        global run_timing_game, timing_game_finished
+        global spoon_index                                 
         
         # Padding for the zone detection logic so the thumb needs to be at least x amount of
         # pixels within the zone to be counted as a win.
@@ -63,17 +88,39 @@ init python:
                 # SUCCESS! The thumb is within the green safe zone. We'll set the "run_timing_game" variable to False, play a "success" sound
                 # and then append the scene name which had a chest unlocked to the list.
                 #run_timing_game = False
-                renpy.music.play(channel = "sound", filenames = "open-door.ogg", relative_volume = 0.5)
-                #chests_opened.append(current_chest_game)
-                #renpy.retain_after_load()
+                # ACERTO
+                correct_timing_count += 1
+                spoon_index = (spoon_index + 1) % len(store.SPOON_FRAMES)
+                renpy.music.play(channel="sound", filenames="open-door.ogg", relative_volume=0.5)
             else:
-                # ERROR! The thumb is not within the safe zone. We add 1 to the "wrong_timing_count" variable to keep track
-                # of how many times they've missed it and play an error sound.
+                # ERRO
                 wrong_timing_count += 1
-                # Play an error sound.
-                if not renpy.music.is_playing(channel = "sound"):
-                    renpy.music.play(channel = "sound", filenames = "error.ogg", relative_volume = 0.5)
-            
+                if not renpy.music.is_playing(channel="sound"):
+                    renpy.music.play(channel="sound", filenames="error.ogg", relative_volume=0.5)
+                #renpy.retain_after_load()
+        
+        # ─── Fim de rodada: 20 cliques totais ───
+        if correct_timing_count + wrong_timing_count >= timing_clicks_limit:
+            run_timing_game      = False
+            timing_game_finished = True
+
+            # camada 2 — sobrevive ao próximo setupTimingGame()
+            store.last_round_correct = correct_timing_count
+            store.last_round_wrong   = wrong_timing_count
+            store.last_round_id      = current_chest_game
+
+            # camada 3 — acumulado no save
+            store.total_correct += correct_timing_count
+            store.total_wrong   += wrong_timing_count
+
+            hist = store.minigame_history.get(
+                current_chest_game, {"correct": 0, "wrong": 0, "runs": 0}
+            )
+            hist["correct"] += correct_timing_count
+            hist["wrong"]   += wrong_timing_count
+            hist["runs"]    += 1
+            store.minigame_history[current_chest_game] = hist
+
         #if wrong_timing_count == 3:
             # GAME OVER! The player has missed the safe zone 3 times which means they've now lost the game.
             # We'll set the "run_timing_game" variable to False which will make below if statement no longer
@@ -104,18 +151,6 @@ transform chest_opened_anim:
     parallel:
         easein 2.0 alpha 1.0
 
-screen lost_timing_game():
-    modal True
-
-    frame:
-        background "#ffffffb6"
-        align(0.5, 0.5)
-        xfill True
-        ysize 80
-        text "You lost :(" size 40 color "#000" align (0.5, 0.5)
-    
-    dismiss action Function(setupTimingGame)
-
 screen chest_game_1():
     key "K_SPACE" action SetVariable("timing_check", True)
     add "background.png"
@@ -133,12 +168,12 @@ screen chest_game_1():
     showif run_timing_game:
         # Only show the slider bar if the game has been activated.
         frame:
-            align(slider_bar_align_x, slider_bar_align_y)
-            padding(0, 0)
-            background "slider-bar.png"
-            xysize slider_bar_size
-            add "safe-zone.png" pos safe_zone_pos
-            add "slider.png" pos slider_pos
+            xfill True
+            ysize 150
+            yalign 0.0
+            padding (0, 0)
+            background Frame("timing_bg.png", 0, 0)
+            add "timing_star.png" pos slider_pos
 
     # This button is only used as a simple showcase of how you can have several scenes with different chests to unlock,
     # and how each scene will show if its chest has been unlocked previously or not.
@@ -158,21 +193,20 @@ screen caldeirao():
     image "caldeirao/caldeirao_color.png":
         pos(0.5, 0.20) 
         anchor (0.5, 0.0)
-    image "caldeirao/colher_dir_color.png":
-        pos(0.5, 0.20) 
+    add get_spoon_image():
+        pos (0.5, 0.20)
         anchor (0.5, 0.0)
     
     on "show" action SetVariable("run_timing_game", True)
 
     showif run_timing_game:
         frame:
-            align(slider_bar_align_x, slider_bar_align_y)
-            padding(0, 0)
-            background "slider-bar.png"
-            xysize slider_bar_size
-            add "safe-zone.png" pos safe_zone_pos
-            add "slider.png" pos slider_pos
-        
+            xfill True
+            ysize 150
+            yalign 0.0
+            padding (0, 0)
+            background Frame("timing_bg.png", 40, 0)
+            add "timing_star.png" pos slider_pos
     use timing_minigame(current_scene = "caldeirao")
 
 screen timing_minigame(current_scene):
@@ -187,15 +221,19 @@ screen timing_minigame(current_scene):
 
 define slider_bar_size = (1920, 35)
 define slider_thumb_size = (24, 33)
-define safe_zone_size = (150, 35)
+define safe_zone_size = (325, 35)
+define timing_clicks_limit = 20
 
+default SPOON_FRAMES = ("esq", "dir", "frente", "baixo")
 default safe_zone_pos = None
 default slider_pos = (0, 0)
-default slider_bar_align_x = 0.5
-default slider_bar_align_y = 1
 default slider_speed = 25
 default timing_check = False
 default slider_movement_dir = "right"
-default wrong_timing_count = 0
-default chests_opened = []
-default run_timing_game = False
+default wrong_timing_count   = 0
+default correct_timing_count = 0
+default run_timing_game      = False
+default timing_game_finished = False
+default chests_opened        = []
+default spoon_colorless_threshold = 10
+default spoon_index = 0
