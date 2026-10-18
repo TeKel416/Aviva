@@ -1,12 +1,20 @@
-﻿define aviva = Character("Aviva")
+﻿define a = Character("Aviva")
 
 label start:
-    scene bg quarto happy
-    show aviva happy
-    "Aviva..."
+    scene bg black
+
+    stop music
+
+    voice "aviva-sussuros.mp3"
+    "Aviva...{p=5.5}{nw}"
+    
+    play music "aviva-neutro.mp3" fadein 1.0
+    call c1_manha
+    
+    a "Preciso seguir o que Perpetus diz. Preciso trabalhar para alcançar meu sonho."
 
     $setupTimingGame()
-    call screen caldeirao
+    call screen caldeirao with fade
     
     call c1_tarde
     return

@@ -18,7 +18,7 @@ define config.name = _("Aviva")
 ## Determines if the title given above is shown on the main menu screen. Set
 ## this to False to hide the title.
 
-define gui.show_name = True
+define gui.show_name = False
 
 
 ## The version of the game.
@@ -30,6 +30,34 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+Este jogo faz parte da Women Game Jam 2026 e foi produzido com a ajuda da Comunidade Lótus Hub.
+
+
+Programação: TeKel, Nico
+
+Logo: Manu 
+
+Interface: ellenzinha, malada (principais) e Manu (auxiliar) 
+
+Concept de Personagem: Axel 
+
+Sprite Personagem: Axel 
+
+Concept de Cenário: Peridoto 
+
+Sprite de Objetos: Romãlin 
+
+Tarô: Manu (design) e ellenzinha (ilustração) 
+
+Roteiro: Peridoto, malada 
+
+Level Design: Kaemi, Romãlin 
+
+Sound Design: Winnie 
+
+Trilha Sonora: Miari 
+
+
 """)
 
 
@@ -62,7 +90,7 @@ define config.has_voice = True
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-# define config.main_menu_music = "main-menu-theme.ogg"
+define config.main_menu_music = "aviva-neutro.mp3"
 
 
 ## Transitions #################################################################

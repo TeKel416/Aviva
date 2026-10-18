@@ -3,9 +3,11 @@
 #  CAPÍTULO 1 — MANHÃ
 # ═══════════════════════════════════════════
 label c1_manha:
-    scene bg_quarto with fade
+    scene bg quarto neutral with fade
 
     "Você acorda com o sol batendo na janela."
+
+    a "Vamos começar o dia. Preciso me arrumar."
     call cena_banheiro
     return
 
