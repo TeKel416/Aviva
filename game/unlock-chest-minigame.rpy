@@ -92,7 +92,7 @@ init python:
                 # ACERTO
                 correct_timing_count += 1
                 spoon_index = (spoon_index + 1) % len(store.SPOON_FRAMES)
-                renpy.music.play(channel="sound", filenames="open-door.ogg", relative_volume=0.5)
+                renpy.music.play(channel="sound", filenames="acerto.mp3", relative_volume=0.5)
             else:
                 # ERRO
                 wrong_timing_count += 1
@@ -201,7 +201,7 @@ screen chest_game_1():
 
 screen caldeirao():
     key "K_SPACE" action SetVariable("timing_check", True)
-    add "background-2.png"
+    add "bg trabalho.png"
 
     image "caldeirao/caldeirao_color.png":
         pos(0.5, 0.20) 
