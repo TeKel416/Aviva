@@ -154,7 +154,7 @@ transform chest_opened_anim:
 
 screen chest_game_1():
     key "K_SPACE" action SetVariable("timing_check", True)
-    add "background.png"
+    add "trabalho.png"
 
     if not "chest_game_1" in chests_opened:
         # This chest hasn't been opened yet because it's not in the "chests_opened" list, so we show the clickable closed chest.
@@ -174,7 +174,9 @@ screen chest_game_1():
             yalign 0.0
             padding (0, 0)
             background Frame("timing_bg.png", 0, 0)
-            add "timing_star.png" pos slider_pos
+            add "timing_star.png":
+                anchor (0, 0.5)
+                pos (slider_pos[0], 75)
 
     # This button is only used as a simple showcase of how you can have several scenes with different chests to unlock,
     # and how each scene will show if its chest has been unlocked previously or not.
@@ -191,8 +193,6 @@ screen chest_game_1():
     showif timing_game_finished:
         frame:
             align (0.5, 0.85)
-            padding (30, 15)
-            background "#000000c0"
 
             textbutton "Continuar":
                 text_size 28
@@ -201,7 +201,7 @@ screen chest_game_1():
 
 screen caldeirao():
     key "K_SPACE" action SetVariable("timing_check", True)
-    add "background-2.png"
+    add "trabalho.png"
 
     image "caldeirao/caldeirao_color.png":
         pos(0.5, 0.20) 
@@ -219,15 +219,14 @@ screen caldeirao():
             yalign 0.0
             padding (0, 0)
             background Frame("timing_bg.png", 40, 0)
-            add "timing_star.png" pos slider_pos
+            add "timing_star.png":
+                anchor (0, 0.5)
+                pos (slider_pos[0], 75)
     use timing_minigame(current_scene = "caldeirao")
 
     showif timing_game_finished:
         frame:
             align (0.5, 0.85)
-            padding (30, 15)
-            background "#000000c0"
-
             textbutton "Continuar":
                 text_size 28
                 text_color "#fff"
