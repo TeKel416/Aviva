@@ -14,8 +14,10 @@ label start:
     a "Preciso seguir o que Perpetus diz. Preciso trabalhar para alcançar meu sonho."
 
     $setupTimingGame()
+    play sound "caldeirao.mp3" fadein 1.0 loop volume 0.5
     call screen caldeirao with fade
-    
+    stop sound
+
     call c1_tarde
     return
 
