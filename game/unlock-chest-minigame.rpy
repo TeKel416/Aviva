@@ -96,6 +96,7 @@ init python:
             elif slider_movement_dir == "left" and slider_pos[0] <= 0:
                 slider_movement_dir = "right"
 
+
 transform chest_opened_anim:
     alpha 0.0
     parallel:
@@ -150,22 +151,20 @@ screen chest_game_1():
     
     use timing_minigame(current_scene = "chest_game_1")
 
-screen chest_game_2():
+screen caldeirao():
     key "K_SPACE" action SetVariable("timing_check", True)
     add "background-2.png"
 
-    if "chest_game_2" not in chests_opened:
-        # This chest hasn't been opened yet because it's not in the "chests_opened" list, so we show the clickable closed chest.
-        imagebutton auto "chest-closed-%s.png" action SetVariable("run_timing_game", True) pos(0.5, 0.35) anchor (0.5, 0.0)
-    else:
-        # This chest has been opened already so we show the unlocked chest.
-        add "chest-opened.png":
-            pos(0.5, 0.35)
-            anchor(0.5, 0.0)
-            at chest_opened_anim
+    image "caldeirao/caldeirao_color.png":
+        pos(0.5, 0.20) 
+        anchor (0.5, 0.0)
+    image "caldeirao/colher_dir_color.png":
+        pos(0.5, 0.20) 
+        anchor (0.5, 0.0)
+    
+    on "show" action SetVariable("run_timing_game", True)
 
     showif run_timing_game:
-        # Only show the slider bar if the game has been activated.
         frame:
             align(slider_bar_align_x, slider_bar_align_y)
             padding(0, 0)
@@ -173,17 +172,8 @@ screen chest_game_2():
             xysize slider_bar_size
             add "safe-zone.png" pos safe_zone_pos
             add "slider.png" pos slider_pos
-    
-    # This button is only used as a simple showcase of how you can have several scenes with different chests to unlock,
-    # and how each scene will show if its chest has been unlocked previously or not.
-    showif not run_timing_game:
-        button:
-            align(0.9, 0.1)
-            background "#fff"
-            text "Scene 1" size 25 color "#000"
-            action [Hide("chest_game_2"), Function(setupTimingGame), Show("chest_game_1")]
-    
-    use timing_minigame(current_scene = "chest_game_2")
+        
+    use timing_minigame(current_scene = "caldeirao")
 
 screen timing_minigame(current_scene):
     if run_timing_game:
