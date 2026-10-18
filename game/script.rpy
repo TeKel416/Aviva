@@ -29,6 +29,12 @@
 
     $ print(">>> [START] Acabou o c1.")
 
+
+    $setupTimingGame()
+    play sound "caldeirao.mp3" fadein 1.0 loop volume 0.5
+    call screen caldeirao with fade
+
+    call c1_tarde
     return
 
 # --- Animações de Aviva ---
