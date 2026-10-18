@@ -184,7 +184,19 @@ screen chest_game_1():
             text "Scene 2" size 25 color "#000"
             action [Hide("chest_game_1"), Function(setupTimingGame), Show("chest_game_2")]
     
+    
     use timing_minigame(current_scene = "chest_game_1")
+
+    showif timing_game_finished:
+        frame:
+            align (0.5, 0.85)
+            padding (30, 15)
+            background "#000000c0"
+
+            textbutton "Continuar":
+                text_size 28
+                text_color "#fff"
+                action Return()
 
 screen caldeirao():
     key "K_SPACE" action SetVariable("timing_check", True)
@@ -209,6 +221,17 @@ screen caldeirao():
             add "timing_star.png" pos slider_pos
     use timing_minigame(current_scene = "caldeirao")
 
+    showif timing_game_finished:
+        frame:
+            align (0.5, 0.85)
+            padding (30, 15)
+            background "#000000c0"
+
+            textbutton "Continuar":
+                text_size 28
+                text_color "#fff"
+                action Return()
+
 screen timing_minigame(current_scene):
     if run_timing_game:
         frame:
@@ -224,7 +247,7 @@ define slider_thumb_size = (24, 33)
 define safe_zone_size = (325, 35)
 define timing_clicks_limit = 20
 
-default SPOON_FRAMES = ("esq", "dir", "frente", "baixo")
+default SPOON_FRAMES = ("esq", "frente", "dir", "baixo")
 default safe_zone_pos = None
 default slider_pos = (0, 0)
 default slider_speed = 25

@@ -7,10 +7,11 @@ label start:
 
     $setupTimingGame()
     call screen caldeirao
-
+    
+    call c1_tarde
     return
 
-
+# --- Animações de Aviva ---
 image aviva work:
     "aviva_anim/aviva work 01.png"
     pause 0.1
