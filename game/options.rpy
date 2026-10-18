@@ -58,6 +58,30 @@ Sound Design: Winnie
 Trilha Sonora: Miari 
 
 
+
+Extra Assets:
+
+CODE ADAPTED FROM: https://www.patreon.com/ess_renpy_tutorials/posts/unlock-chest-has-168294179
+
+FREE  SOUND
+
+Water Pipe by NachtmahrTV -- https://freesound.org/s/553257/ -- License: Creative Commons 0
+
+Water Gurgle #1 by Eddiexander -- https://freesound.org/s/198319/ -- License: Attribution 3.0
+
+BUBLES_LIGHT_2.wav by sound_ahead -- https://freesound.org/s/567458/ -- License: Attribution 3.0
+
+water_buble_012.wav by johonbravo -- https://freesound.org/s/398338/ -- License: Attribution 4.0
+
+bullesss.wav by gdzxpo -- https://freesound.org/s/70244/ -- License: Attribution 4.0
+
+brushing_teeth.wav by anagar -- https://freesound.org/s/267929/ -- License: Creative Commons 0
+
+brush teeth field recording by Garuda1982 -- https://freesound.org/s/463495/ -- License: Creative Commons 0
+
+Door opening and closing 7 by JakLocke -- https://freesound.org/s/261110/ -- License: Attribution 4.0
+
+
 """)
 
 
