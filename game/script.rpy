@@ -1,6 +1,4 @@
-﻿define a = Character("Aviva")
-
-label start:
+﻿label start:
     scene bg black
 
     stop music
@@ -15,6 +13,14 @@ label start:
 
     $setupTimingGame()
     call screen caldeirao with fade
+
+    # ─── Reação do cliente ───
+    if last_round_correct >= WORK_GOOD_THRESHOLD:
+        cliente "Hm… não ficou muito bom. Mas irei levar."
+        a"Desculpa. Volte sempre."
+    else:
+        cliente "Não foi isso que eu pedi!"
+        a "Perdão, irei consertar."
     
     call c1_tarde
     return

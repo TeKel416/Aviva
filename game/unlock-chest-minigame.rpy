@@ -25,7 +25,8 @@ init python:
         #Retorna o caminho da imagem da colher com base no ciclo + estado global
         frame = store.SPOON_FRAMES[store.spoon_index % len(store.SPOON_FRAMES)]
 
-        sucessos_globais = store.total_correct
+        # Sucessos globais "ao vivo": total acumulado + acertos desta rodada
+        sucessos_globais = store.total_correct + store.correct_timing_count
 
         if sucessos_globais >= store.spoon_colorless_threshold:
             suffix = "colorless"

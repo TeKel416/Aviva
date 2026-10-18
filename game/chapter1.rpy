@@ -1,3 +1,4 @@
+define WORK_GOOD_THRESHOLD  = 10
 
 # ═══════════════════════════════════════════
 #  CAPÍTULO 1 — MANHÃ
@@ -5,10 +6,9 @@
 label c1_manha:
     scene bg quarto neutral with fade
 
-    "Você acorda com o sol batendo na janela."
-
-    a "Vamos começar o dia. Preciso me arrumar."
+    a_pensamento  "Vamos começar o dia. Preciso me arrumar."
     call cena_banheiro
+
     return
 
 
@@ -18,7 +18,13 @@ label c1_manha:
 label c1_tarde:
     scene bg_rua with fade
 
-    "A tarde chega e você decide o que fazer."
+    # ─── Reação do cliente ───
+    if last_round_correct >= WORK_GOOD_THRESHOLD:
+        cliente "Hm… não ficou muito bom. Mas irei levar."
+        a"Desculpa. Volte sempre."
+    else:
+        cliente "Não foi isso que eu pedi!"
+        a "Perdão, irei consertar."
 
     label cena_cartas:
     scene black with fade
